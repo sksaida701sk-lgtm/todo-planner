@@ -6,23 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Mentalist — Casebook Planner</title>
 <style>
-:root{
-  --bg:#171419;--panel:#211c22;--panel2:#2b222a;
-  --red:#a33d50;--red2:#c45a69;--gold:#d5b17a;
-  --text:#f3e9e0;--muted:#ad9da5;--line:#44343e;
-  --green:#83b49a;
-}
+:root{--bg:#171419;--panel:#211c22;--panel2:#2b222a;--red:#a33d50;--red2:#c45a69;--gold:#d5b17a;--text:#f3e9e0;--muted:#ad9da5;--line:#44343e;--green:#83b49a}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:Georgia,"Times New Roman",serif}
-button,input,select{font:inherit}
-button{cursor:pointer}
-button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+button,input,select{font:inherit}button{cursor:pointer}
 .app{max-width:1250px;margin:auto;padding:25px}
 header{display:flex;justify-content:space-between;align-items:center;gap:15px;padding-bottom:20px;border-bottom:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:12px}
 .smiley{width:45px;height:45px;display:grid;place-items:center;border-radius:50%;background:var(--red);font:28px Arial;color:white;box-shadow:0 0 20px #a33d5033}
-.brand-name{font-size:19px;letter-spacing:2px}
-.brand-sub{font:9px Arial,sans-serif;letter-spacing:2px;color:var(--gold);margin-top:5px}
+.brand-name{font-size:19px;letter-spacing:2px}.brand-sub{font:9px Arial,sans-serif;letter-spacing:2px;color:var(--gold);margin-top:5px}
 .date-top{font:12px Arial,sans-serif;color:var(--muted);text-align:right}
 .hero{margin:25px 0;padding:27px 28px;border:1px solid #65404a;background:linear-gradient(110deg,#392129,#241e24 75%);position:relative;overflow:hidden}
 .eyebrow{font:10px Arial,sans-serif;letter-spacing:2.5px;color:var(--gold)}
@@ -45,77 +37,70 @@ h2{font-size:20px;font-weight:normal;margin:0}
 .calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
 .weekday{text-align:center;padding:8px 0;color:var(--muted);font:10px Arial,sans-serif}
 .day{position:relative;min-height:40px;border:1px solid transparent;background:#292229;color:var(--text);border-radius:5px;font:12px Arial,sans-serif}
-.day:hover{border-color:var(--gold)}
-.day.muted-day{color:#766a73;background:transparent}
-.day.today{border-color:var(--gold);color:var(--gold)}
-.day.selected{background:var(--red);color:white;border-color:var(--red)}
+.day:hover{border-color:var(--gold)}.day.muted-day{color:#766a73;background:transparent}.day.today{border-color:var(--gold);color:var(--gold)}.day.selected{background:var(--red);color:white;border-color:var(--red)}
 .day.has-tasks:after{content:"";position:absolute;bottom:5px;left:calc(50% - 3px);width:6px;height:3px;border-radius:5px;background:var(--gold)}
 .day.selected.has-tasks:after{background:white}
 .calendar-note{font:11px Arial,sans-serif;color:var(--muted);margin-top:13px}
 .selected-date{margin:22px 0 13px;display:flex;justify-content:space-between;gap:10px;align-items:center}
-.selected-date strong{font-size:15px;font-weight:normal}
-.mini-list{display:flex;flex-direction:column;gap:8px}
+.selected-date strong{font-size:15px;font-weight:normal}.mini-list{display:flex;flex-direction:column;gap:8px}
 .mini-task{padding:10px 11px;background:#2b222a;border-left:2px solid var(--red);font-size:13px;line-height:1.5;overflow-wrap:anywhere}
 .mini-task.done-mini{border-left-color:var(--green);color:var(--muted);text-decoration:line-through}
 .empty-mini{padding:15px 10px;color:var(--muted);font:12px Arial,sans-serif;text-align:center;border:1px dashed var(--line)}
 .form{display:grid;grid-template-columns:minmax(0,1fr) 125px 125px;gap:8px;margin-bottom:14px}
 input,select{width:100%;min-width:0;height:41px;padding:0 10px;background:#19161b;color:var(--text);border:1px solid var(--line);border-radius:5px;outline:none}
-input::placeholder{color:#887982}
-.form .task-name{grid-column:1/-1}
-.form .due-date{grid-column:1/3}
+input::placeholder{color:#887982}input:focus,select:focus{border-color:var(--gold)}
+.form .task-name{grid-column:1/-1}.form .due-date{grid-column:1/3}
 .btn{height:41px;padding:0 13px;border:1px solid var(--red);border-radius:5px;background:var(--red);color:white;font:11px Arial,sans-serif;font-weight:bold;letter-spacing:.5px}
-.btn:hover{background:var(--red2)}
-.btn.secondary{background:transparent;border-color:var(--line);color:var(--muted)}
-.btn.secondary:hover{color:var(--text);border-color:var(--gold)}
-.form .submit{grid-column:1/-1;width:100%}
-.toolbar{display:flex;gap:8px;margin-bottom:14px}
-.toolbar input{flex:1;min-width:0}
-.toolbar select{width:125px}
+.btn:hover{background:var(--red2)}.btn.secondary{background:transparent;border-color:var(--line);color:var(--muted)}
+.btn.secondary:hover{color:var(--text);border-color:var(--gold)}.form .submit{grid-column:1/-1;width:100%}
+.toolbar{display:flex;gap:8px;margin-bottom:14px}.toolbar input{flex:1;min-width:0}.toolbar select{width:125px}
 .tasks{display:flex;flex-direction:column;gap:8px}
 .task{display:flex;align-items:center;gap:10px;padding:12px 10px;border:1px solid var(--line);background:#1c191e;border-radius:6px}
 .check{appearance:none;flex:0 0 18px;width:18px;height:18px;padding:0;border:1px solid #8e7b86;border-radius:4px;cursor:pointer}
-.check:checked{background:var(--green);border-color:var(--green)}
-.check:checked:after{content:"✓";display:block;text-align:center;font:13px Arial;line-height:16px;color:#171419}
-.task-main{flex:1;min-width:0}
-.task-title{font-size:13px;line-height:1.5;overflow-wrap:anywhere}
+.check:checked{background:var(--green);border-color:var(--green)}.check:checked:after{content:"✓";display:block;text-align:center;font:13px Arial;line-height:16px;color:#171419}
+.task-main{flex:1;min-width:0}.task-title{font-size:13px;line-height:1.5;overflow-wrap:anywhere}
 .task.done .task-title{text-decoration:line-through;color:#92858c}
 .meta{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
 .tag{font:9px Arial,sans-serif;padding:4px 6px;border-radius:3px;background:#362a33;color:#c9b7c0}
-.high{background:#512c35;color:#f2a9b3}
-.medium{background:#413426;color:#e3c78e}
-.low{background:#26382e;color:#a7d3b6}
-.task-actions{display:flex;gap:2px}
-.icon-btn{width:27px;height:29px;border:0;border-radius:4px;background:transparent;color:var(--muted);font:16px Arial}
-.icon-btn:hover{background:#392a32;color:var(--gold)}
-.icon-btn.delete:hover{color:#ff9eaa}
+.high{background:#512c35;color:#f2a9b3}.medium{background:#413426;color:#e3c78e}.low{background:#26382e;color:#a7d3b6}
+.task-actions{display:flex;gap:2px}.icon-btn{width:27px;height:29px;border:0;border-radius:4px;background:transparent;color:var(--muted);font:16px Arial}
+.icon-btn:hover{background:#392a32;color:var(--gold)}.icon-btn.delete:hover{color:#ff9eaa}
 .list-empty{text-align:center;padding:28px 8px;color:var(--muted);font:12px Arial,sans-serif}
 .list-empty b{display:block;font:normal 17px Georgia;color:var(--text);margin-bottom:8px}
 .panel-footer{font:9px Arial,sans-serif;letter-spacing:1px;color:var(--muted);text-align:center;margin-top:15px}
 .toast{position:fixed;bottom:20px;right:20px;padding:12px 16px;background:#33252d;border:1px solid #68414b;color:var(--text);font:12px Arial,sans-serif;opacity:0;transform:translateY(8px);pointer-events:none;transition:.2s}
 .toast.show{opacity:1;transform:translateY(0)}
+
+/* THE MENTALIST: OBSERVATION ARCHIVE */
+.observation{margin-top:20px;border:1px solid #65404a;background:linear-gradient(160deg,#282027,#1d191f);padding:21px;position:relative;overflow:hidden}
+.observation:before{content:"";position:absolute;top:0;left:0;width:4px;height:100%;background:var(--red)}
+.obs-label{font:9px Arial,sans-serif;letter-spacing:2.5px;color:var(--gold)}
+.observation h3{font-size:21px;font-weight:normal;margin:10px 0 7px}
+.obs-intro{font:12px Arial,sans-serif;color:var(--muted);line-height:1.7;margin:0 0 16px}
+.quote{padding:13px 0;border-top:1px solid var(--line)}
+.quote p{font-size:15px;font-style:italic;line-height:1.55;margin:0 0 7px;color:#f0e3d9}
+.quote span{font:9px Arial,sans-serif;letter-spacing:1.4px;color:var(--gold)}
+.observation-foot{margin-top:16px;padding-top:13px;border-top:1px solid var(--line);font:9px Arial,sans-serif;letter-spacing:1.5px;color:var(--muted)}
+.principles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:15px}
+.principle{padding:10px;background:#30252d;font:10px Arial,sans-serif;color:#d8c5c9;letter-spacing:.5px}
+.principle b{display:block;color:var(--gold);font-size:9px;margin-bottom:5px}
 @media(max-width:900px){.layout{grid-template-columns:1fr}.calendar-panel{order:0}.task-panel{order:1}}
 @media(max-width:600px){
-  .app{padding:15px 11px 30px}.brand-name{font-size:15px;letter-spacing:1px}.brand-sub{font-size:8px;letter-spacing:1px}
-  .smiley{width:39px;height:39px;font-size:24px}.date-top{font-size:10px;max-width:100px}
-  .hero{padding:23px 17px}.hero:after{right:0;font-size:100px}.stats{grid-template-columns:repeat(2,1fr);gap:8px}
-  .stat{padding:13px}.stat strong{font-size:25px}.panel{padding:14px 10px}
-  .form{grid-template-columns:1fr 1fr}.form .task-name{grid-column:1/-1}.form .due-date{grid-column:1/-1}
-  .form select{font-size:11px;padding:0 6px}.toolbar select{width:105px;font-size:11px}
-  .day{min-height:37px;font-size:11px}.calendar-grid{gap:3px}.weekday{font-size:9px}
-  .task{gap:7px;padding:11px 7px}.icon-btn{width:25px}
+.app{padding:15px 11px 30px}.brand-name{font-size:15px;letter-spacing:1px}.brand-sub{font-size:8px;letter-spacing:1px}
+.smiley{width:39px;height:39px;font-size:24px}.date-top{font-size:10px;max-width:100px}
+.hero{padding:23px 17px}.hero:after{right:0;font-size:100px}
+.stats{grid-template-columns:repeat(2,1fr);gap:8px}.stat{padding:13px}.stat strong{font-size:25px}
+.panel{padding:14px 10px}.form{grid-template-columns:1fr 1fr}.form .task-name,.form .due-date{grid-column:1/-1}
+.form select{font-size:11px;padding:0 6px}.toolbar select{width:105px;font-size:11px}
+.day{min-height:37px;font-size:11px}.calendar-grid{gap:3px}.weekday{font-size:9px}
+.task{gap:7px;padding:11px 7px}.icon-btn{width:25px}
 }
 </style>
 </head>
 <body>
 <main class="app">
 <header>
-  <div class="brand">
-    <div class="smiley">☻</div>
-    <div>
-      <div class="brand-name">THE MENTALIST</div>
-      <div class="brand-sub">PERSONAL CASEBOOK · DAILY PLANNER</div>
-    </div>
-  </div>
+  <div class="brand"><div class="smiley">☻</div><div><div class="brand-name">THE MENTALIST</div><div class="brand-sub">PERSONAL CASEBOOK · DAILY PLANNER</div></div></div>
   <div class="date-top" id="todayLabel"></div>
 </header>
 
@@ -133,55 +118,48 @@ input::placeholder{color:#887982}
 </section>
 
 <div class="layout">
+<section>
   <section class="panel calendar-panel">
-    <div class="panel-head">
-      <div><div class="small">YOUR SCHEDULE</div><h2 style="margin-top:6px">Case Calendar</h2></div>
-      <span class="pill">MONTH VIEW</span>
-    </div>
-    <div class="panel-head">
-      <div class="calendar-nav">
-        <button id="prevMonth" type="button" aria-label="Previous month">‹</button>
-        <div class="month-name" id="monthName"></div>
-        <button id="nextMonth" type="button" aria-label="Next month">›</button>
-      </div>
-      <button class="btn secondary" id="todayBtn" type="button">Today</button>
-    </div>
+    <div class="panel-head"><div><div class="small">YOUR SCHEDULE</div><h2 style="margin-top:6px">Case Calendar</h2></div><span class="pill">MONTH VIEW</span></div>
+    <div class="panel-head"><div class="calendar-nav"><button id="prevMonth" type="button">‹</button><div class="month-name" id="monthName"></div><button id="nextMonth" type="button">›</button></div><button class="btn secondary" id="todayBtn" type="button">Today</button></div>
     <div class="calendar-grid" id="calendar"></div>
     <div class="calendar-note">● Gold marker = tasks scheduled on that date</div>
-    <div class="selected-date">
-      <strong id="selectedLabel">Tasks for today</strong>
-      <span class="small" id="dayCount">0 TASKS</span>
-    </div>
+    <div class="selected-date"><strong id="selectedLabel">Tasks for today</strong><span class="small" id="dayCount">0 TASKS</span></div>
     <div class="mini-list" id="dayTasks"></div>
   </section>
 
-  <section class="panel task-panel">
-    <div class="panel-head">
-      <div><div class="small">YOUR DAILY INVESTIGATION</div><h2 style="margin-top:6px">My Case Files</h2></div>
-      <span class="pill" id="visibleCount">8 TASKS</span>
-    </div>
+  <section class="observation">
+    <div class="obs-label">PATRICK JANE'S NOTEBOOK · VOL. 01</div>
+    <h3>The Art of Observation</h3>
+    <p class="obs-intro">A sharp mind notices what everyone else overlooks. Keep these principles close.</p>
 
-    <form class="form" id="taskForm">
-      <input class="task-name" id="taskName" maxlength="200" placeholder="What needs your attention?" required>
-      <select id="category" aria-label="Category">
-        <option>Personal</option><option>Work</option><option>Study</option><option>Health</option><option>Other</option>
-      </select>
-      <select id="priority" aria-label="Priority">
-        <option value="Low">Low priority</option><option value="Medium" selected>Medium priority</option><option value="High">High priority</option>
-      </select>
-      <input class="due-date" id="dueDate" type="date" aria-label="Due date" required>
-      <button class="btn submit" id="submitBtn" type="submit">+ Add New Case</button>
-    </form>
+    <div class="quote"><p>“People see what they expect to see.”</p><span>01 / QUESTION YOUR ASSUMPTIONS</span></div>
+    <div class="quote"><p>“The smallest details often reveal the biggest truths.”</p><span>02 / PAY ATTENTION</span></div>
+    <div class="quote"><p>“Listen more than you speak. Watch more than you react.”</p><span>03 / READ THE ROOM</span></div>
 
-    <div class="toolbar">
-      <input id="search" type="search" placeholder="Search case files..." aria-label="Search tasks">
-      <select id="filter" aria-label="Filter tasks">
-        <option value="All">All tasks</option><option value="Pending">Pending</option><option value="Completed">Completed</option>
-      </select>
+    <div class="principles">
+      <div class="principle"><b>RULE I</b>Stay curious.</div>
+      <div class="principle"><b>RULE II</b>Think twice.</div>
+      <div class="principle"><b>RULE III</b>Trust evidence.</div>
+      <div class="principle"><b>RULE IV</b>Finish the case.</div>
     </div>
-    <div class="tasks" id="taskList"></div>
-    <div class="panel-footer">THE TRUTH IS IN THE DETAILS · AUTOSAVE ENABLED</div>
+    <div class="observation-foot">THE MIND IS YOUR GREATEST TOOL · USE IT WELL</div>
   </section>
+</section>
+
+<section class="panel task-panel">
+  <div class="panel-head"><div><div class="small">YOUR DAILY INVESTIGATION</div><h2 style="margin-top:6px">My Case Files</h2></div><span class="pill" id="visibleCount">8 TASKS</span></div>
+  <form class="form" id="taskForm">
+    <input class="task-name" id="taskName" maxlength="200" placeholder="What needs your attention?" required>
+    <select id="category"><option>Personal</option><option>Work</option><option>Study</option><option>Health</option><option>Other</option></select>
+    <select id="priority"><option value="Low">Low priority</option><option value="Medium" selected>Medium priority</option><option value="High">High priority</option></select>
+    <input class="due-date" id="dueDate" type="date" required>
+    <button class="btn submit" id="submitBtn" type="submit">+ Add New Case</button>
+  </form>
+  <div class="toolbar"><input id="search" type="search" placeholder="Search case files..."><select id="filter"><option value="All">All tasks</option><option value="Pending">Pending</option><option value="Completed">Completed</option></select></div>
+  <div class="tasks" id="taskList"></div>
+  <div class="panel-footer">THE TRUTH IS IN THE DETAILS · AUTOSAVE ENABLED</div>
+</section>
 </div>
 </main>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -191,22 +169,16 @@ const KEY="mentalistPlannerTasks_v2";
 const $=id=>document.getElementById(id);
 const today=new Date();
 const dateKey=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
-const shiftDate=(days)=>{const d=new Date(today);d.setDate(d.getDate()+days);return dateKey(d)};
-let tasks=loadTasks();
-let editingId=null;
-let selectedDate=dateKey(today);
-let calendarMonth=new Date(today.getFullYear(),today.getMonth(),1);
-let toastTimer;
-
+const shiftDate=n=>{const d=new Date(today);d.setDate(d.getDate()+n);return dateKey(d)};
+let tasks=loadTasks(),editingId=null,selectedDate=dateKey(today),calendarMonth=new Date(today.getFullYear(),today.getMonth(),1),toastTimer;
 $("todayLabel").textContent=today.toLocaleDateString(undefined,{weekday:"long",month:"short",day:"numeric",year:"numeric"});
 $("dueDate").value=selectedDate;
 
 function loadTasks(){
   try{
-    const data=JSON.parse(localStorage.getItem(KEY)||"null");
-    if(Array.isArray(data))return data.filter(t=>t&&typeof t.id==="string"&&typeof t.title==="string"&&typeof t.completed==="boolean");
+    const saved=JSON.parse(localStorage.getItem(KEY)||"null");
+    if(Array.isArray(saved))return saved.filter(t=>t&&typeof t.id==="string"&&typeof t.title==="string"&&typeof t.completed==="boolean");
   }catch{}
-  // Eight sample tasks, with exactly two already completed.
   const samples=[
     ["Review today's priorities","Personal","High",0,true],
     ["Finish programming assignment","Study","High",0,false],
@@ -217,142 +189,65 @@ function loadTasks(){
     ["Take a short evening walk","Health","Low",2,false],
     ["Prepare tomorrow's checklist","Personal","High",3,false]
   ];
-  const initial=samples.map((s,i)=>({
-    id:"sample-"+i,title:s[0],category:s[1],priority:s[2],
-    dueDate:shiftDate(s[3]),completed:s[4],createdAt:new Date().toISOString()
-  }));
-  try{localStorage.setItem(KEY,JSON.stringify(initial))}catch{}
-  return initial;
+  const data=samples.map((s,i)=>({id:"sample-"+i,title:s[0],category:s[1],priority:s[2],dueDate:shiftDate(s[3]),completed:s[4],createdAt:new Date().toISOString()}));
+  try{localStorage.setItem(KEY,JSON.stringify(data))}catch{}
+  return data;
 }
-function saveTasks(){
-  try{localStorage.setItem(KEY,JSON.stringify(tasks));return true}
-  catch{notify("Unable to save: browser storage may be full.");return false}
-}
-function notify(message){
-  const el=$("toast");el.textContent=message;el.classList.add("show");
-  clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove("show"),2200);
-}
-function formatDate(key,options={weekday:"short",month:"short",day:"numeric"}){
-  const [y,m,d]=key.split("-").map(Number);
-  return new Date(y,m-1,d).toLocaleDateString(undefined,options);
-}
-function updateStats(){
-  const completed=tasks.filter(t=>t.completed).length;
-  $("total").textContent=tasks.length;
-  $("completed").textContent=completed;
-  $("pending").textContent=tasks.length-completed;
-  $("rate").textContent=(tasks.length?Math.round(completed/tasks.length*100):0)+"%";
-}
-function makeTag(text,cls=""){
-  const el=document.createElement("span");el.className="tag"+(cls?" "+cls:"");el.textContent=text;return el;
-}
-function makeAction(symbol,label,cls,callback){
-  const b=document.createElement("button");b.type="button";b.className="icon-btn "+cls;b.textContent=symbol;b.title=label;b.setAttribute("aria-label",label);b.addEventListener("click",callback);return b;
-}
+function saveTasks(){try{localStorage.setItem(KEY,JSON.stringify(tasks));return true}catch{notify("Unable to save: browser storage may be full.");return false}}
+function notify(message){const el=$("toast");el.textContent=message;el.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove("show"),2200)}
+function formatDate(key,options={weekday:"short",month:"short",day:"numeric"}){const [y,m,d]=key.split("-").map(Number);return new Date(y,m-1,d).toLocaleDateString(undefined,options)}
+function updateStats(){const n=tasks.filter(t=>t.completed).length;$("total").textContent=tasks.length;$("completed").textContent=n;$("pending").textContent=tasks.length-n;$("rate").textContent=(tasks.length?Math.round(n/tasks.length*100):0)+"%"}
+function makeTag(text,cls=""){const el=document.createElement("span");el.className="tag"+(cls?" "+cls:"");el.textContent=text;return el}
+function action(symbol,label,cls,fn){const b=document.createElement("button");b.type="button";b.className="icon-btn "+cls;b.textContent=symbol;b.title=label;b.setAttribute("aria-label",label);b.addEventListener("click",fn);return b}
+
 function renderCalendar(){
-  const year=calendarMonth.getFullYear(),month=calendarMonth.getMonth();
-  $("monthName").textContent=calendarMonth.toLocaleDateString(undefined,{month:"long",year:"numeric"});
+  const y=calendarMonth.getFullYear(),m=calendarMonth.getMonth();$("monthName").textContent=calendarMonth.toLocaleDateString(undefined,{month:"long",year:"numeric"});
   const cal=$("calendar");cal.replaceChildren();
-  ["Su","Mo","Tu","We","Th","Fr","Sa"].forEach(w=>{
-    const el=document.createElement("div");el.className="weekday";el.textContent=w;cal.append(el);
-  });
-  const first=new Date(year,month,1).getDay();
-  const days=new Date(year,month+1,0).getDate();
-  const prevDays=new Date(year,month,0).getDate();
-  const totalCells=Math.ceil((first+days)/7)*7;
-  for(let i=0;i<totalCells;i++){
+  ["Su","Mo","Tu","We","Th","Fr","Sa"].forEach(w=>{const e=document.createElement("div");e.className="weekday";e.textContent=w;cal.append(e)});
+  const first=new Date(y,m,1).getDay(),days=new Date(y,m+1,0).getDate(),prevDays=new Date(y,m,0).getDate(),cells=Math.ceil((first+days)/7)*7;
+  for(let i=0;i<cells;i++){
     let d,other=false;
-    if(i<first){d=new Date(year,month-1,prevDays-first+i+1);other=true}
-    else if(i>=first+days){d=new Date(year,month+1,i-first-days+1);other=true}
-    else d=new Date(year,month,i-first+1);
-    const key=dateKey(d);
-    const b=document.createElement("button");b.type="button";b.className="day";
-    b.textContent=d.getDate();
-    if(other)b.classList.add("muted-day");
-    if(key===dateKey(today))b.classList.add("today");
-    if(key===selectedDate)b.classList.add("selected");
-    if(tasks.some(t=>t.dueDate===key))b.classList.add("has-tasks");
-    b.setAttribute("aria-label",formatDate(key,{month:"long",day:"numeric",year:"numeric"}));
-    b.addEventListener("click",()=>{
-      selectedDate=key;
-      calendarMonth=new Date(d.getFullYear(),d.getMonth(),1);
-      $("dueDate").value=key;
-      renderCalendar();renderDayTasks();
-    });
-    cal.append(b);
+    if(i<first){d=new Date(y,m-1,prevDays-first+i+1);other=true}
+    else if(i>=first+days){d=new Date(y,m+1,i-first-days+1);other=true}
+    else d=new Date(y,m,i-first+1);
+    const key=dateKey(d),b=document.createElement("button");b.type="button";b.className="day";b.textContent=d.getDate();
+    if(other)b.classList.add("muted-day");if(key===dateKey(today))b.classList.add("today");if(key===selectedDate)b.classList.add("selected");if(tasks.some(t=>t.dueDate===key))b.classList.add("has-tasks");
+    b.addEventListener("click",()=>{selectedDate=key;calendarMonth=new Date(d.getFullYear(),d.getMonth(),1);$("dueDate").value=key;renderCalendar();renderDayTasks()});cal.append(b);
   }
 }
 function renderDayTasks(){
   $("selectedLabel").textContent=formatDate(selectedDate,{weekday:"long",month:"long",day:"numeric"});
-  const dayTasks=tasks.filter(t=>t.dueDate===selectedDate);
-  $("dayCount").textContent=dayTasks.length+" TASK"+(dayTasks.length===1?"":"S");
+  const day=tasks.filter(t=>t.dueDate===selectedDate);$("dayCount").textContent=day.length+" TASK"+(day.length===1?"":"S");
   const list=$("dayTasks");list.replaceChildren();
-  if(!dayTasks.length){
-    const empty=document.createElement("div");empty.className="empty-mini";empty.textContent="No cases scheduled for this date.";list.append(empty);return;
-  }
-  dayTasks.forEach(t=>{
-    const item=document.createElement("div");item.className="mini-task"+(t.completed?" done-mini":"");item.textContent=(t.completed?"✓ ":"• ")+t.title;list.append(item);
-  });
+  if(!day.length){const e=document.createElement("div");e.className="empty-mini";e.textContent="No cases scheduled for this date.";list.append(e);return}
+  day.forEach(t=>{const e=document.createElement("div");e.className="mini-task"+(t.completed?" done-mini":"");e.textContent=(t.completed?"✓ ":"• ")+t.title;list.append(e)});
 }
 function renderTasks(){
   const q=$("search").value.trim().toLowerCase(),filter=$("filter").value;
-  const visible=tasks.filter(t=>(t.title+" "+t.category+" "+t.priority).toLowerCase().includes(q)&&
-    (filter==="All"||(filter==="Pending"&&!t.completed)||(filter==="Completed"&&t.completed)));
-  const list=$("taskList");list.replaceChildren();
-  $("visibleCount").textContent=visible.length+" TASK"+(visible.length===1?"":"S");
-  if(!visible.length){
-    const empty=document.createElement("div");empty.className="list-empty";
-    const strong=document.createElement("b");strong.textContent="No matching case files";
-    const msg=document.createElement("span");msg.textContent="Try another search or add a new task.";
-    empty.append(strong,msg);list.append(empty);
-  }else{
-    visible.forEach(t=>{
-      const row=document.createElement("article");row.className="task"+(t.completed?" done":"");
-      const check=document.createElement("input");check.type="checkbox";check.className="check";check.checked=t.completed;check.setAttribute("aria-label","Complete "+t.title);
-      check.addEventListener("change",()=>{t.completed=check.checked;saveTasks();renderAll()});
-      const main=document.createElement("div");main.className="task-main";
-      const title=document.createElement("div");title.className="task-title";title.textContent=t.title;
-      const meta=document.createElement("div");meta.className="meta";
-      meta.append(makeTag(t.category));
-      meta.append(makeTag(t.priority+" priority",t.priority.toLowerCase()));
-      meta.append(makeTag(formatDate(t.dueDate,{month:"short",day:"numeric"})));
-      main.append(title,meta);
-      const actions=document.createElement("div");actions.className="task-actions";
-      actions.append(makeAction("✎","Edit task","edit",()=>{
-        editingId=t.id;$("taskName").value=t.title;$("category").value=t.category;$("priority").value=t.priority;$("dueDate").value=t.dueDate;
-        $("submitBtn").textContent="Save Changes";$("taskName").focus();
-        $("taskForm").scrollIntoView({behavior:"smooth",block:"center"});
-      }));
-      actions.append(makeAction("×","Delete task","delete",()=>{
-        if(!confirm("Delete this case file?"))return;
-        tasks=tasks.filter(x=>x.id!==t.id);if(editingId===t.id)resetForm();saveTasks();renderAll();notify("Case file deleted.");
-      }));
-      row.append(check,main,actions);list.append(row);
-    });
-  }
+  const visible=tasks.filter(t=>(t.title+" "+t.category+" "+t.priority).toLowerCase().includes(q)&&(filter==="All"||(filter==="Pending"&&!t.completed)||(filter==="Completed"&&t.completed)));
+  const list=$("taskList");list.replaceChildren();$("visibleCount").textContent=visible.length+" TASK"+(visible.length===1?"":"S");
+  if(!visible.length){const e=document.createElement("div");e.className="list-empty";const b=document.createElement("b");b.textContent="No matching case files";const s=document.createElement("span");s.textContent="Try another search or add a new task.";e.append(b,s);list.append(e)}
+  else visible.forEach(t=>{
+    const row=document.createElement("article");row.className="task"+(t.completed?" done":"");
+    const check=document.createElement("input");check.type="checkbox";check.className="check";check.checked=t.completed;check.setAttribute("aria-label","Complete "+t.title);check.addEventListener("change",()=>{t.completed=check.checked;saveTasks();renderAll()});
+    const main=document.createElement("div");main.className="task-main";const title=document.createElement("div");title.className="task-title";title.textContent=t.title;
+    const meta=document.createElement("div");meta.className="meta";meta.append(makeTag(t.category),makeTag(t.priority+" priority",t.priority.toLowerCase()),makeTag(formatDate(t.dueDate,{month:"short",day:"numeric"})));main.append(title,meta);
+    const actions=document.createElement("div");actions.className="task-actions";
+    actions.append(action("✎","Edit task","edit",()=>{editingId=t.id;$("taskName").value=t.title;$("category").value=t.category;$("priority").value=t.priority;$("dueDate").value=t.dueDate;$("submitBtn").textContent="Save Changes";$("taskName").focus()}));
+    actions.append(action("×","Delete task","delete",()=>{if(!confirm("Delete this case file?"))return;tasks=tasks.filter(x=>x.id!==t.id);if(editingId===t.id)resetForm();saveTasks();renderAll();notify("Case file deleted.")}));
+    row.append(check,main,actions);list.append(row);
+  });
   updateStats();
 }
-function resetForm(){
-  editingId=null;$("taskForm").reset();$("dueDate").value=selectedDate;$("priority").value="Medium";$("submitBtn").textContent="+ Add New Case";
-}
+function resetForm(){editingId=null;$("taskForm").reset();$("dueDate").value=selectedDate;$("priority").value="Medium";$("submitBtn").textContent="+ Add New Case"}
 function renderAll(){renderTasks();renderCalendar();renderDayTasks()}
 $("taskForm").addEventListener("submit",e=>{
-  e.preventDefault();const title=$("taskName").value.trim();
-  if(!title){$("taskName").focus();return}
-  const dueDate=$("dueDate").value||selectedDate;
-  if(editingId){
-    const t=tasks.find(x=>x.id===editingId);
-    if(t){t.title=title;t.category=$("category").value;t.priority=$("priority").value;t.dueDate=dueDate}
-    notify("Case file updated.");
-  }else{
-    tasks.unshift({id:Date.now().toString(36)+Math.random().toString(36).slice(2),title,category:$("category").value,priority:$("priority").value,dueDate,completed:false,createdAt:new Date().toISOString()});
-    notify("New case added.");
-  }
-  selectedDate=dueDate;calendarMonth=new Date(Number(dueDate.slice(0,4)),Number(dueDate.slice(5,7))-1,1);
-  saveTasks();resetForm();renderAll();
+  e.preventDefault();const title=$("taskName").value.trim();if(!title)return;const dueDate=$("dueDate").value||selectedDate;
+  if(editingId){const t=tasks.find(x=>x.id===editingId);if(t){t.title=title;t.category=$("category").value;t.priority=$("priority").value;t.dueDate=dueDate}notify("Case file updated.")}
+  else{tasks.unshift({id:Date.now().toString(36)+Math.random().toString(36).slice(2),title,category:$("category").value,priority:$("priority").value,dueDate,completed:false,createdAt:new Date().toISOString()});notify("New case added.")}
+  selectedDate=dueDate;calendarMonth=new Date(Number(dueDate.slice(0,4)),Number(dueDate.slice(5,7))-1,1);saveTasks();resetForm();renderAll();
 });
-$("search").addEventListener("input",renderTasks);
-$("filter").addEventListener("change",renderTasks);
+$("search").addEventListener("input",renderTasks);$("filter").addEventListener("change",renderTasks);
 $("prevMonth").addEventListener("click",()=>{calendarMonth=new Date(calendarMonth.getFullYear(),calendarMonth.getMonth()-1,1);renderCalendar()});
 $("nextMonth").addEventListener("click",()=>{calendarMonth=new Date(calendarMonth.getFullYear(),calendarMonth.getMonth()+1,1);renderCalendar()});
 $("todayBtn").addEventListener("click",()=>{selectedDate=dateKey(today);calendarMonth=new Date(today.getFullYear(),today.getMonth(),1);$("dueDate").value=selectedDate;renderAll()});
